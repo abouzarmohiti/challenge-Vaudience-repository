@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -39,9 +38,7 @@ public class ContactController {
         if (!(version.equals("1.1") || version.equals("1.0"))) {
             throw new VersionNotSupportedException("version " + version);
         }
-
         return contactService.findAll();
-
     }
 
 
@@ -68,8 +65,8 @@ public class ContactController {
             @ApiResponse(code = 401, message = "Bad Request.", response = List.class)
     })
     @GetMapping(value = "/{postalCode}")
-    public Optional<Contact> fetchByPostalCode(@RequestHeader("x-resource-version") String version,
-                                               @PathVariable String postalCode)
+    public List<Contact> fetchByPostalCode(@RequestHeader("x-resource-version") String version,
+                                           @PathVariable String postalCode)
             throws VersionNotSupportedException {
         if (!(version.equals("1.1") || version.equals("1.0"))) {
             throw new VersionNotSupportedException("version " + version);

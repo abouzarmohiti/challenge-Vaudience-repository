@@ -19,9 +19,10 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        contactRepository.save(new Contact(null, "Toni Wagner", LocalDate.of(2006, Month.MAY, 23), new Address("Würzburg", "90443")));
-        contactRepository.save(new Contact(null, "Christian Spruch", LocalDate.of(2000, Month.MARCH, 9), new Address("Würzburg", "00483")));
-        contactRepository.save(new Contact(null, "Frederick Rudeck", LocalDate.of(2012, Month.MAY, 18), new Address("Würzburg", "90443")));
-        contactRepository.save(new Contact(null, "Abazar Mohiti", LocalDate.of(1991, Month.DECEMBER, 4), new Address("Bochum", "12345")));
+        contactRepository.save(new Contact( null,"Tomas Edison",LocalDate.of(2006, Month.MAY, 23), new Address("Bochum", "90443")));
+        contactRepository.save(new Contact(null, "Reza Razavi",LocalDate.of(2000, Month.MARCH, 9), new Address("Bochum", "00483")));
+        contactRepository.save(new Contact(null, "Eric Maoo",LocalDate.of(2012, Month.MAY, 18), new Address("Berlin", "90443")));
+        contactRepository.save(new Contact(null, "Walter Ahmad",LocalDate.of(1998, Month.DECEMBER, 4), new Address("Munich", "12345")));
+
     }
 }
