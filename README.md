@@ -28,4 +28,6 @@ There are three main API in this project:
 
 I also develop a few test classes.
 
+URL Swagger : http://localhost:8080/swagger-ui.html
 
+URL h2-console : http://localhost:8080/h2-console
