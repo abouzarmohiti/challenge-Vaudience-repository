@@ -1,30 +1,47 @@
 package com.Vaudience.challenge.service;
 
+
 import com.Vaudience.challenge.exception.ContactIsExistException;
 import com.Vaudience.challenge.model.Contact;
+import com.Vaudience.challenge.repository.ContactRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class ContactServiceImpl implements ContactService  {
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class ContactServiceImpl implements ContactService {
+
+    private final ContactRepository contactRepository;
+
     @Override
     public List<Contact> findAll() {
-        return null;
+        return contactRepository.findAll();
     }
 
     @Override
     public Optional<Contact> findByAddressPostalCode(String postalCode) {
-        return Optional.empty();
+        return contactRepository.findByAddressPostalCode(postalCode);
     }
 
     @Override
     public void save(Contact contact) throws ContactIsExistException {
+        boolean contactIsExist = contactRepository.existsByFullNameAndBirthDate(contact.getFullName(),
+                contact.getBirthDate());
+        if (contactIsExist) throw new ContactIsExistException("Contact is exist before");
+        contactRepository.save(contact);
 
     }
 
     @Override
     public boolean existsByFullNameAndBirthDate(String fullName, LocalDate birthDate) {
-        return false;
+        return contactRepository.existsByFullNameAndBirthDate(fullName, birthDate);
     }
+
+
 }
